@@ -28,7 +28,7 @@ class sevendayrogueTests: XCTestCase {
             XCTAssert((1...6 ~= d6.roll()), "d6 rolls wrong")
             XCTAssert(1...10 ~= (d4+d6), "Combining d4 + d6 exceeded range")
             XCTAssert(1...12 ~= (2*d6), "2d6 exceeded range")
-            XCTAssert(2...5 ~= (d4 + 1), "1d4+1 exceeded range")
+            XCTAssert(2...5 ~= (d4+1).roll(), "1d4+1 exceeded range")
         }
     }
 

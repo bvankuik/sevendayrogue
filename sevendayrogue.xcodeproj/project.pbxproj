@@ -15,6 +15,7 @@
 		8980ADB51F49D6B1005A83FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8980ADB31F49D6B1005A83FE /* LaunchScreen.storyboard */; };
 		8980ADC01F49D6B1005A83FE /* sevendayrogueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8980ADBF1F49D6B1005A83FE /* sevendayrogueTests.swift */; };
 		89DDD0831F4A0A3D00B26F03 /* Die.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DDD0821F4A0A3D00B26F03 /* Die.swift */; };
+		89DDD0861F4B45D200B26F03 /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DDD0851F4B45D200B26F03 /* Spell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		8980ADBF1F49D6B1005A83FE /* sevendayrogueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sevendayrogueTests.swift; sourceTree = "<group>"; };
 		8980ADC11F49D6B1005A83FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89DDD0821F4A0A3D00B26F03 /* Die.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Die.swift; sourceTree = "<group>"; };
+		89DDD0851F4B45D200B26F03 /* Spell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				89DDD0821F4A0A3D00B26F03 /* Die.swift */,
+				89DDD0851F4B45D200B26F03 /* Spell.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89DDD0861F4B45D200B26F03 /* Spell.swift in Sources */,
 				8980ADAA1F49D6B1005A83FE /* ViewController.swift in Sources */,
 				8980ADA81F49D6B1005A83FE /* AppDelegate.swift in Sources */,
 				89DDD0831F4A0A3D00B26F03 /* Die.swift in Sources */,

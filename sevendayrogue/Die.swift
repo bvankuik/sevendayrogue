@@ -12,6 +12,7 @@ import Foundation
 struct Die {
 
     let pips: Int
+    let offset: Int
 
     func roll() -> Int {
         let outcome =  1 + Int(arc4random_uniform(UInt32(self.pips)))
@@ -20,8 +21,13 @@ struct Die {
 
     init(pips: Int) {
         self.pips = pips
+        self.offset = 0
     }
 
+    init(pips: Int, offset: Int) {
+        self.pips = pips
+        self.offset = offset
+    }
 }
 
 // MARK: - All dies as constants
@@ -40,8 +46,9 @@ func +(left: Die, right: Die) -> Int {
     return left.roll() + right.roll()
 }
 
-func +(left: Die, right: Int) -> Int {
-    return left.roll() + right
+func +(left: Die, right: Int) -> Die {
+    let die = Die(pips: left.pips, offset: right)
+    return die
 }
 
 func *(left: Int, right: Die) -> Int {
