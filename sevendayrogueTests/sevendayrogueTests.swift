@@ -32,6 +32,11 @@ class sevendayrogueTests: XCTestCase {
         }
     }
 
+    func testWorld() {
+        let world = World()
+        XCTAssert(!world.creatureNamesList.isEmpty, "World has no creature names")
+    }
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

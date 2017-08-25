@@ -15,7 +15,7 @@ struct Die {
     let offset: Int
 
     func roll() -> Int {
-        let outcome =  1 + Int(arc4random_uniform(UInt32(self.pips)))
+        let outcome =  1 + Int(arc4random_uniform(UInt32(self.pips))) + self.offset
         return outcome
     }
 

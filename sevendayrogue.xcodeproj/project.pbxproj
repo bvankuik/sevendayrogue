@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8926AEF11F4D82ED00828D81 /* Ability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8926AEF01F4D82ED00828D81 /* Ability.swift */; };
+		8926AEF31F4D8CE800828D81 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8926AEF21F4D8CE800828D81 /* World.swift */; };
+		8926AEF51F4D978D00828D81 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8926AEF41F4D978D00828D81 /* GameData.swift */; };
+		8926AEF81F4D993E00828D81 /* names_human_female.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8926AEF61F4D993E00828D81 /* names_human_female.txt */; };
+		8926AEF91F4D993E00828D81 /* names_human_male.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8926AEF71F4D993E00828D81 /* names_human_male.txt */; };
+		8926AEFB1F4D9BAC00828D81 /* Die.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DDD0821F4A0A3D00B26F03 /* Die.swift */; };
 		8980ADA81F49D6B1005A83FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8980ADA71F49D6B1005A83FE /* AppDelegate.swift */; };
 		8980ADAA1F49D6B1005A83FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8980ADA91F49D6B1005A83FE /* ViewController.swift */; };
 		8980ADAD1F49D6B1005A83FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8980ADAB1F49D6B1005A83FE /* Main.storyboard */; };
@@ -20,6 +25,8 @@
 		899CB9D71F4C7C840071F7E4 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CB9D51F4C7C840071F7E4 /* Weapon.swift */; };
 		899CB9D91F4C7E4F0071F7E4 /* Armor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CB9D81F4C7E4F0071F7E4 /* Armor.swift */; };
 		899CB9DA1F4C7E4F0071F7E4 /* Armor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CB9D81F4C7E4F0071F7E4 /* Armor.swift */; };
+		89B88CB21F4F5653002D3849 /* Encounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B88CB11F4F5653002D3849 /* Encounter.swift */; };
+		89B88CB31F4F5653002D3849 /* Encounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B88CB11F4F5653002D3849 /* Encounter.swift */; };
 		89DDD0831F4A0A3D00B26F03 /* Die.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DDD0821F4A0A3D00B26F03 /* Die.swift */; };
 		89DDD0861F4B45D200B26F03 /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DDD0851F4B45D200B26F03 /* Spell.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +43,10 @@
 
 /* Begin PBXFileReference section */
 		8926AEF01F4D82ED00828D81 /* Ability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ability.swift; sourceTree = "<group>"; };
+		8926AEF21F4D8CE800828D81 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		8926AEF41F4D978D00828D81 /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		8926AEF61F4D993E00828D81 /* names_human_female.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = names_human_female.txt; path = gamedata/names_human_female.txt; sourceTree = SOURCE_ROOT; };
+		8926AEF71F4D993E00828D81 /* names_human_male.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = names_human_male.txt; path = gamedata/names_human_male.txt; sourceTree = SOURCE_ROOT; };
 		8980ADA41F49D6B1005A83FE /* sevendayrogue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sevendayrogue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8980ADA71F49D6B1005A83FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8980ADA91F49D6B1005A83FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +61,7 @@
 		899CB9D31F4C7C5C0071F7E4 /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
 		899CB9D51F4C7C840071F7E4 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		899CB9D81F4C7E4F0071F7E4 /* Armor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Armor.swift; sourceTree = "<group>"; };
+		89B88CB11F4F5653002D3849 /* Encounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encounter.swift; sourceTree = "<group>"; };
 		89DDD0821F4A0A3D00B26F03 /* Die.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Die.swift; sourceTree = "<group>"; };
 		89DDD0851F4B45D200B26F03 /* Spell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +84,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8926AEFA1F4D994500828D81 /* GameData */ = {
+			isa = PBXGroup;
+			children = (
+				8926AEF61F4D993E00828D81 /* names_human_female.txt */,
+				8926AEF71F4D993E00828D81 /* names_human_male.txt */,
+			);
+			name = GameData;
+			sourceTree = "<group>";
+		};
 		8980AD9B1F49D6B1005A83FE = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +114,7 @@
 		8980ADA61F49D6B1005A83FE /* sevendayrogue */ = {
 			isa = PBXGroup;
 			children = (
+				8926AEFA1F4D994500828D81 /* GameData */,
 				89DDD0841F4A0A4500B26F03 /* Core */,
 				8980ADA71F49D6B1005A83FE /* AppDelegate.swift */,
 				8980ADA91F49D6B1005A83FE /* ViewController.swift */,
@@ -123,6 +145,9 @@
 				899CB9D51F4C7C840071F7E4 /* Weapon.swift */,
 				899CB9D81F4C7E4F0071F7E4 /* Armor.swift */,
 				8926AEF01F4D82ED00828D81 /* Ability.swift */,
+				8926AEF21F4D8CE800828D81 /* World.swift */,
+				8926AEF41F4D978D00828D81 /* GameData.swift */,
+				89B88CB11F4F5653002D3849 /* Encounter.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -213,8 +238,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8980ADB51F49D6B1005A83FE /* LaunchScreen.storyboard in Resources */,
+				8926AEF81F4D993E00828D81 /* names_human_female.txt in Resources */,
 				8980ADB21F49D6B1005A83FE /* Assets.xcassets in Resources */,
 				8980ADAD1F49D6B1005A83FE /* Main.storyboard in Resources */,
+				8926AEF91F4D993E00828D81 /* names_human_male.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,9 +260,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				89DDD0861F4B45D200B26F03 /* Spell.swift in Sources */,
+				89B88CB21F4F5653002D3849 /* Encounter.swift in Sources */,
 				8926AEF11F4D82ED00828D81 /* Ability.swift in Sources */,
 				8980ADAA1F49D6B1005A83FE /* ViewController.swift in Sources */,
 				8980ADA81F49D6B1005A83FE /* AppDelegate.swift in Sources */,
+				8926AEF51F4D978D00828D81 /* GameData.swift in Sources */,
+				8926AEF31F4D8CE800828D81 /* World.swift in Sources */,
 				899CB9D61F4C7C840071F7E4 /* Weapon.swift in Sources */,
 				899CB9D41F4C7C5C0071F7E4 /* Creature.swift in Sources */,
 				89DDD0831F4A0A3D00B26F03 /* Die.swift in Sources */,
@@ -250,6 +280,8 @@
 			files = (
 				899CB9DA1F4C7E4F0071F7E4 /* Armor.swift in Sources */,
 				8980ADC01F49D6B1005A83FE /* sevendayrogueTests.swift in Sources */,
+				89B88CB31F4F5653002D3849 /* Encounter.swift in Sources */,
+				8926AEFB1F4D9BAC00828D81 /* Die.swift in Sources */,
 				899CB9D71F4C7C840071F7E4 /* Weapon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
