@@ -35,6 +35,14 @@ class sevendayrogueTests: XCTestCase {
     func testWorld() {
         let world = World()
         XCTAssert(!world.creatureNamesList.isEmpty, "World has no creature names")
+
+        let width = world.grid.width
+        let height = world.grid.height
+
+        (0..<100).forEach { _ in
+            let location = world.grid.spawnLocation()
+            XCTAssert(location.col == 0 || location.col == (width - 1) || location.row == 0 || location.row == (height - 1), "Spawn location is not at the edge")
+        }
     }
 
     func testPerformanceExample() {

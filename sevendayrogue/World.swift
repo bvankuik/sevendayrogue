@@ -20,6 +20,30 @@ extension World {
 extension World {
     struct Grid {
         private var surface: Array<Array<Square>>
+        let width: Int
+        var height: Int
+
+        func spawnLocation() -> Location {
+            let edge = Direction.random()
+
+            let location: Location
+            switch edge {
+            case .north:
+                location = Location(row: 0, col: random(max: self.width))
+            case .east:
+                location = Location(row: random(max: self.height), col: self.width - 1)
+            case .south:
+                location = Location(row: self.height - 1, col: random(max: self.width))
+            case .west:
+                location = Location(row: random(max: self.height), col: 0)
+            }
+
+            return location
+        }
+
+        func square(for location: Location) -> Square {
+            return self.surface[location.row][location.col]
+        }
 
         subscript(row: Int, col: Int) -> Square {
             get {
@@ -32,6 +56,9 @@ extension World {
 
         init(width: Int, height: Int) {
             self.surface = []
+            self.width = width
+            self.height = height
+
             for _ in 0 ..< width {
                 var squares: [Square] = []
 
@@ -71,7 +98,7 @@ struct World {
         self.creatureNamesList = [
             CreatureNames(race: .human, firstNames: namesHumanMale, lastNames: namesHumanMale)
         ]
-        let width = 30
+        let width = 40
         let height = 30
         self.grid = Grid(width: 30, height: 30)
         self.baseLocation = Location(row: width/2, col: height/2)
