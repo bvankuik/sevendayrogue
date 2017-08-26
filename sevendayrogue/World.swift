@@ -9,29 +9,16 @@
 import Foundation
 
 
-struct World {
+extension World {
     struct CreatureNames {
         var race: Creature.Race
         var firstNames: [String]
         var lastNames: [String]
     }
+}
 
-    struct Location {
-        var row: Int
-        var col: Int
-    }
-
+extension World {
     struct Grid {
-        struct Square {
-            enum Terrain {
-                case normal
-                case difficult
-            }
-
-            var terrain: Terrain = .normal
-            var encounter: Encounter?
-        }
-
         private var surface: Array<Array<Square>>
 
         subscript(row: Int, col: Int) -> Square {
@@ -56,12 +43,27 @@ struct World {
             }
         }
     }
+}
 
-    var creatureNamesList: [CreatureNames]
-    var baseLocation: Location
+extension World.Grid {
+    struct Square {
+        enum Terrain {
+            case normal
+            case difficult
+        }
+
+        var terrain: Terrain = .normal
+        var encounters: [Encounter] = []
+    }
+}
+
+struct World {
+    let creatureNamesList: [CreatureNames]
+    let baseLocation: Location
+    let grid: Grid
+
     var epoch = 0
     var spawnChance = 50
-    var grid: Grid
 
     init() {
         let namesHumanMale = readFile(filename: "names_human_male.txt")
