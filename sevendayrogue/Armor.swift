@@ -11,6 +11,7 @@ import Foundation
 
 struct Armor {
     enum Weight {
+        case none
         case light
         case medium
         case heavy
@@ -33,7 +34,11 @@ struct Shield {
     var acBonus: Int
 }
 
-func allArmor() -> [Armor] {
+class ArmorList {
+
+    static let instance = ArmorList()
+
+    let none = Armor(name: "None", acBonus: 0, weight: .none, dexBonus: .full)
     let leather = Armor(name: "Leather", acBonus: 1, weight: .light, dexBonus: .full)
     let studded = Armor(name: "Studded", acBonus: 2, weight: .light, dexBonus: .full)
     let halfChain = Armor(name: "Half Chain", acBonus: 3, weight: .medium, dexBonus: .capped(dexCap: 2))
@@ -43,17 +48,35 @@ func allArmor() -> [Armor] {
     let splint = Armor(name: "Splint", acBonus: 7, weight: .heavy, dexBonus: .none)
     let plate = Armor(name: "Full plate", acBonus: 8, weight: .heavy, dexBonus: .none)
 
-    let allArmor = [
-        leather,
-        studded,
-        halfChain,
-        scale,
-        halfPlate,
-        chain,
-        splint,
-        plate
-    ]
-    return allArmor
+    let allArmor: [Armor]
+
+    func find(by name: String) -> Armor? {
+        let result = self.allArmor.filter { $0.name == name }
+        return result.first
+    }
+
+    func find(by bonus: Int) -> Armor {
+        let result = self.allArmor.filter { $0.acBonus == bonus }
+        if let first = result.first {
+            return first
+        } else {
+            return self.none
+        }
+    }
+
+    init() {
+        self.allArmor = [
+            self.leather,
+            self.studded,
+            self.halfChain,
+            self.scale,
+            self.halfPlate,
+            self.chain,
+            self.splint,
+            self.plate
+        ]
+    }
+
 }
 
 func allShields() -> [Shield] {

@@ -37,16 +37,28 @@ struct Weapon {
     }
 }
 
-func allWeapons() -> [Weapon] {
+class WeaponList {
+
+    static let instance = WeaponList()
+
     let dagger = Weapon(name: "Dagger", damageDice: [d4])
     let shortsword = Weapon(name: "Shortsword", damageDice: [d6])
     let longsword = Weapon(name: "Longsword", damageDice: [d8])
+    let greataxe = Weapon(name: "Greataxe", damageDice: [d12])
 
-    let allWeapons = [
-        dagger,
-        shortsword,
-        longsword
-    ]
+    let allWeapons: [Weapon]
 
-    return allWeapons
+    func find(by name: String) -> Weapon? {
+        let result = self.allWeapons.filter { $0.name == name }
+        return result.first
+    }
+
+    init() {
+        self.allWeapons = [
+            dagger,
+            shortsword,
+            longsword
+        ]
+    }
 }
+

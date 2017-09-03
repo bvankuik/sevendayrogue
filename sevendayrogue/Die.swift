@@ -13,6 +13,12 @@ struct Die {
 
     let pips: Int
     let offset: Int
+    var min: Int {
+        return 1 + self.offset
+    }
+    var max: Int {
+        return self.pips + self.offset
+    }
 
     func roll() -> Int {
         let outcome =  1 + Int(arc4random_uniform(UInt32(self.pips))) + self.offset
@@ -27,6 +33,35 @@ struct Die {
     init(pips: Int, offset: Int) {
         self.pips = pips
         self.offset = offset
+    }
+
+    init?(string: String) {
+        if !string.hasPrefix("d") {
+            return nil
+        }
+
+        let plusSplit = string.components(separatedBy: "+")
+        if plusSplit.count == 1 {
+            // format: dX
+            let dsplit = string.components(separatedBy: "d")
+            if let pipsString = dsplit.last, let pips = Int(pipsString) {
+                self.pips = pips
+                self.offset = 0
+            } else {
+                return nil
+            }
+        } else if plusSplit.count == 2 {
+            // format: dX+Y
+            let dsplit = plusSplit[0].components(separatedBy: "d")
+            if let pipsString = dsplit.last, let pips = Int(pipsString), let offset = Int(plusSplit[1]) {
+                self.pips = pips
+                self.offset = offset
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
     }
 }
 

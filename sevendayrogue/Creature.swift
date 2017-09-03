@@ -11,25 +11,26 @@ import CoreGraphics
 
 
 struct Creature {
-    enum Alignment {
-        case lawfulGood
-        case neutralGood
-        case chaoticGood
-        case lawfulNeutral
-        case trueNeutral
-        case chaoticNeutral
-        case lawfulEvil
-        case neutralEvil
-        case chaoticEvil
+    enum Alignment: String {
+        case lawfulGood = "LG"
+        case neutralGood = "NG"
+        case chaoticGood = "CG"
+        case lawfulNeutral = "LN"
+        case trueNeutral = "TN"
+        case chaoticNeutral = "CN"
+        case lawfulEvil = "LE"
+        case neutralEvil = "NE"
+        case chaoticEvil = "CE"
     }
 
-    enum Race: String {
-        case human = "human"
-        case elf = "elf"
-        case halfelf = "half-elf"
-        case dwarf = "dwarf"
-        case gnome = "gnome"
-        case demon = "demon"
+    enum Race {
+        case human
+        case elf
+        case halfelf
+        case dwarf
+        case gnome
+        case demon
+        case monster(name: String)
     }
 
     var ac: Int {
@@ -44,6 +45,7 @@ struct Creature {
     var armor: Armor?
     var shield: Shield?
     var hp: Int
+    var currentHP: Int
     var muscle: Muscle
     var agility: Agility
     var fortitude: Fortitude

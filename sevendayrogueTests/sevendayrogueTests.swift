@@ -32,9 +32,40 @@ class sevendayrogueTests: XCTestCase {
         }
     }
 
+    func testDieParsing() {
+        if let die = Die(string: "d4+1") {
+            XCTAssert(die.min == 2 && die.max == 5)
+        } else {
+            XCTFail()
+        }
+
+        if let die = Die(string: "d100+20") {
+            XCTAssert(die.min == 21 && die.max == 120)
+        } else {
+            XCTFail()
+        }
+
+        if let die = Die(string: "d6+3") {
+            XCTAssert(die.min == 4 && die.max == 9)
+        } else {
+            XCTFail()
+        }
+
+        if let die = Die(string: "d12+6") {
+            XCTAssert(die.min == 7 && die.max == 18)
+        } else {
+            XCTFail()
+        }
+
+        if let die = Die(string: "d8") {
+            XCTAssert(die.min == 1 && die.max == 8)
+        } else {
+            XCTFail()
+        }
+    }
+
     func testWorld() {
         let world = World()
-        XCTAssert(!world.creatureNamesList.isEmpty, "World has no creature names")
 
         let width = world.grid.width
         let height = world.grid.height

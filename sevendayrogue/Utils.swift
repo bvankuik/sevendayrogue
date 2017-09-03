@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 func random(max: Int) -> Int {
     let random = arc4random_uniform(UInt32(max))
     return Int(random)

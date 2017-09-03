@@ -10,14 +10,6 @@ import Foundation
 
 
 extension World {
-    struct CreatureNames {
-        var race: Creature.Race
-        var firstNames: [String]
-        var lastNames: [String]
-    }
-}
-
-extension World {
     struct Grid {
         private var surface: Array<Array<Square>>
         let width: Int
@@ -85,7 +77,7 @@ extension World.Grid {
 }
 
 struct World {
-    let creatureNamesList: [CreatureNames]
+    var creatures: [Creature]
     let baseLocation: Location
     let grid: Grid
 
@@ -93,14 +85,10 @@ struct World {
     var spawnChance = 50
 
     init() {
-        let namesHumanMale = readFile(filename: "names_human_male.txt")
-
-        self.creatureNamesList = [
-            CreatureNames(race: .human, firstNames: namesHumanMale, lastNames: namesHumanMale)
-        ]
         let width = 40
         let height = 30
         self.grid = Grid(width: 30, height: 30)
         self.baseLocation = Location(row: width/2, col: height/2)
+        self.creatures = []
     }
 }

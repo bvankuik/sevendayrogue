@@ -7,59 +7,53 @@
 //
 
 import Foundation
+import CoreGraphics
 
 
-class LineReader {
-    let path: String
+class GameData {
 
-    fileprivate let file: UnsafeMutablePointer<FILE>!
+    static func loadMonsters() -> [Creature] {
+        let monsterFileWithHeader = readFile(filename: "monsters.csv")
+        let monsterFile = monsterFileWithHeader[1 ..< monsterFileWithHeader.count]
 
-    init?(path: String) {
-        self.path = path
+        var monsters: [Creature] = []
 
-        file = fopen(path, "r")
+        for line in monsterFile {
+            let cols = line.components(separatedBy: ";")
+            let hpDie = Die(string: cols[6])
+            var weapon = WeaponList.instance.find(by: cols[13])
+            if let attackBonus = Int(cols[14]) {
+                weapon?.attackBonus = attackBonus
+            }
+            if let die = Die(string: cols[15]) {
+                weapon?.damageDice = [die]
+            }
+            let armor = ArmorList.instance.find(by: Int(cols[4]) ?? 0)
 
-        guard file != nil else { return nil }
-
-    }
-
-    var nextLine: String? {
-        var line:UnsafeMutablePointer<CChar>? = nil
-        var linecap:Int = 0
-        defer { free(line) }
-        return getline(&line, &linecap, file) > 0 ? String(cString: line!) : nil
-    }
-
-    deinit {
-        fclose(file)
-    }
-}
-
-extension LineReader: Sequence {
-    func  makeIterator() -> AnyIterator<String> {
-        return AnyIterator<String> {
-            return self.nextLine
+            let creature = Creature(
+                name: cols[0],
+                alignment: Creature.Alignment(rawValue: cols[1]) ?? .trueNeutral,
+                race: Creature.Race.monster(name: cols[2]),
+                xp: Int(cols[3]) ?? 0,
+                armor: armor,
+                shield: nil,
+                hp: hpDie?.roll() ?? 0,
+                currentHP: hpDie?.max ?? 0,
+                muscle: Muscle(score: Int(cols[7]) ?? 10),
+                agility: Agility(score: Int(cols[8]) ?? 10),
+                fortitude: Fortitude(score: Int(cols[9]) ?? 10),
+                cleverness: Cleverness(score: Int(cols[10]) ?? 10),
+                judgment: Judgment(score: Int(cols[11]) ?? 10),
+                charm: Charm(score: Int(cols[10]) ?? 10),
+                weapons: [],
+                spells: [],
+                walkingSpeed: Int(cols[13]) ?? 30,
+                flyingSpeed: Int(cols[14]) ?? 0,
+                vector: CGRect()
+            )
+            monsters.append(creature)
         }
-    }
-}
-
-
-func readFile(filename: String) -> [String] {
-    guard let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-        return []
+        return monsters
     }
 
-    let path = dir.appendingPathComponent(filename)
-
-    guard let reader = LineReader(path: path.absoluteString) else {
-        return []
-    }
-
-    var lines: [String] = []
-    for line in reader {
-        print(">" + line.trimmingCharacters(in: .whitespacesAndNewlines))
-        lines.append(line)
-    }
-
-    return lines
 }
