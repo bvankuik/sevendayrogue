@@ -11,7 +11,7 @@ import Foundation
 
 struct Encounter {
     let direction: Direction
-    var creatures: [Creature]
+    let creatures: [Creature]
 
     func nextLocation(from current: Location) -> Location {
         let newLocation: Location

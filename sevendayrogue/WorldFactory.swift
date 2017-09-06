@@ -25,7 +25,8 @@ class WorldFactory {
     }
 
     static func makeEncounter() -> Encounter {
-        let encounter = Encounter(creatures: [])
+        let creature = makeCreature()
+        let encounter = Encounter(creatures: [creature])
         return encounter
     }
 
