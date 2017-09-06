@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import CoreGraphics
 
 struct Constants {
-    let worldGridWidth = 40
-    let worldGridHeight = 30
+    let worldGridWidth = 20
+    let worldGridHeight = 15
+    let gridFontSize: CGFloat = 18
 }
 
 let constants = Constants()

@@ -15,6 +15,8 @@ extension World {
         let width: Int
         var height: Int
 
+        // MARK: - Public functions
+
         func spawnLocation(at edge: Direction) -> Location {
             let location: Location
             switch edge {
@@ -31,9 +33,39 @@ extension World {
             return location
         }
 
-        mutating func square(for location: Location) -> Square {
+        func square(for location: Location) -> Square {
             return self.surface[location.x][location.y]
         }
+
+        func increment() -> Grid {
+            var newGrid = Grid(width: self.width, height: self.height)
+            for x in 0 ..< newGrid.width {
+                for y in 0 ..< newGrid.height {
+                    let square = self[x,y]
+                    for encounter in square.encounters {
+                        let currentLocation = Location(x: x, y: y)
+                        let nextLocation = encounter.nextLocation(from: currentLocation)
+                        dlog("Moving encounter from \(currentLocation) to \(nextLocation)")
+                        if self.grid(contains: nextLocation) {
+                            newGrid[nextLocation.x, nextLocation.y].append(encounter: encounter)
+                        }
+                    }
+                }
+            }
+            return newGrid
+        }
+
+        func grid(contains location: Location) -> Bool {
+            if location.x < 0 || location.x >= self.width {
+                return false
+            }
+            if location.y < 0 || location.y >= self.height {
+                return false
+            }
+            return true
+        }
+
+        // MARK: - Operators
 
         subscript(x: Int, y: Int) -> Square {
             get {
@@ -43,6 +75,8 @@ extension World {
                 self.surface[x][y] = newValue
             }
         }
+
+        // MARK: - Life cycle
 
         init(width: Int, height: Int) {
             self.surface = []
@@ -78,19 +112,19 @@ extension World.Grid {
     }
 }
 
-struct World {
-    var creatures: [Creature]
-    let baseLocation: Location
-    var grid: Grid
+class World {
+    private let baseLocation: Location
+    private let spawnDie = d100
+    private var spawnChance = 50
 
-    var epoch = 0
-    var spawnChance = 50
-    let spawnDie = d100
+    private(set) var grid: Grid
+    private(set) var epoch = 0
 
-    // MARK: - Public function6s
+    // MARK: - Public functions
 
-    mutating func increment() {
+    func increment() {
         self.epoch += 1
+        self.grid = self.grid.increment()
         if self.spawnDie.roll() <= self.spawnChance {
             let encounter = WorldFactory.makeEncounter()
             let location = self.grid.spawnLocation(at: encounter.direction.opposite())
@@ -102,8 +136,7 @@ struct World {
     // MARK: - Life cycle
 
     init() {
-        self.grid = Grid(width: 40, height: 30)
+        self.grid = Grid(width: constants.worldGridWidth, height: constants.worldGridHeight)
         self.baseLocation = Location(x: self.grid.width/2, y: self.grid.height/2)
-        self.creatures = []
     }
 }

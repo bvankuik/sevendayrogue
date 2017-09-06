@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,8 +39,23 @@
                             <constraint firstItem="6ha-VG-ova" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wAI-D7-Of6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="u0T-B7-hU7"/>
+                    <navigationItem key="navigationItem" id="u0T-B7-hU7">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Next" id="0fV-pd-aP6">
+                                <connections>
+                                    <action selector="nextButtonAction:" destination="BYZ-38-t0r" id="JjO-UU-5TL"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Play" id="fIh-FO-2fk">
+                                <connections>
+                                    <action selector="playButtonAction:" destination="BYZ-38-t0r" id="BLp-AO-LlF"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
+                        <outlet property="nextButton" destination="0fV-pd-aP6" id="3ij-Co-Ns0"/>
+                        <outlet property="playButton" destination="fIh-FO-2fk" id="N0B-kc-3nm"/>
                         <outlet property="worldView" destination="6ha-VG-ova" id="tjU-0E-27u"/>
                     </connections>
                 </viewController>

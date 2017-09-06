@@ -15,22 +15,27 @@ struct Encounter {
     let origin = Direction.random()
 
     func nextLocation(from current: Location) -> Location {
-        let newLocation: Location
-
         let randomOffset = arc4random_uniform(3)
         let deviation: Int = -1 + Int(randomOffset)
+        let nextX: Int
+        let nextY: Int
 
         switch self.direction {
         case .north:
-            newLocation = Location(x: current.x - 1, y: current.y + deviation)
+            nextX = current.x + deviation
+            nextY = current.y - 1
         case .east:
-            newLocation = Location(x: current.x + deviation, y: current.y + 1)
+            nextX = current.x + 1
+            nextY = current.y + deviation
         case .south:
-            newLocation = Location(x: current.x + 1, y: current.y + deviation)
+            nextX = current.x + deviation
+            nextY = current.y + 1
         case .west:
-            newLocation = Location(x: current.x + deviation, y: current.y - 1)
+            nextX = current.x - 1
+            nextY = current.y + deviation
         }
 
+        let newLocation = Location(x: nextX, y: nextY)
         return newLocation
     }
 

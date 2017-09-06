@@ -13,7 +13,7 @@ extension WorldView {
     class SquareView: UILabel {
         func update(with square: World.Grid.Square) {
             if square.encounters.isEmpty {
-                self.text = ""
+                self.text = "·" // Unicode middle dot
             } else {
                 self.text = "👹"
             }
@@ -21,6 +21,9 @@ extension WorldView {
 
         override init(frame: CGRect) {
             super.init(frame: frame)
+            self.translatesAutoresizingMaskIntoConstraints = false
+            self.textAlignment = .center
+            self.font = UIFont.systemFont(ofSize: constants.gridFontSize)
         }
         
         required init?(coder aDecoder: NSCoder) {
@@ -65,15 +68,20 @@ extension WorldView {
 
             self.addSubview(self.stackView)
             self.stackView.axis = .horizontal
+            self.stackView.distribution = .fillEqually
             self.stackView.translatesAutoresizingMaskIntoConstraints = false
             self.stackView.constrainToSuperview()
 
+            // loop over x
             for _ in 0 ..< constants.worldGridWidth {
                 let colStackView = UIStackView()
                 colStackView.axis = .vertical
+                colStackView.distribution = .fillEqually
                 self.stackView.addArrangedSubview(colStackView)
 
                 var squareViewCol: [SquareView] = []
+
+                // loop over y
                 for _ in 0 ..< constants.worldGridHeight {
                     let squareView = SquareView()
                     squareViewCol.append(squareView)
@@ -114,6 +122,7 @@ class WorldView: UIView {
     }
 
     private func commonInit() {
+        self.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         self.addSubview(self.gridView)
         self.gridView.translatesAutoresizingMaskIntoConstraints = false
         self.gridView.constrainToSuperview()

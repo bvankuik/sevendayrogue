@@ -81,11 +81,58 @@ class sevendayrogueTests: XCTestCase {
         }
     }
 
+    func testGridSpawnLocation() {
+        let length = 10
+        let grid = World.Grid(width: length, height: length)
+        XCTAssert(grid.spawnLocation(at: .north).y == 0)
+        XCTAssert(grid.spawnLocation(at: .east).x == length - 1)
+        XCTAssert(grid.spawnLocation(at: .south).y == length - 1)
+        XCTAssert(grid.spawnLocation(at: .west).x == 0)
+    }
+
+    func testGridSpawn() {
+        let length = 10
+        var grid = World.Grid(width: length, height: length)
+        let encounter = WorldFactory.makeEncounter()
+        let location = grid.spawnLocation(at: encounter.direction.opposite())
+        grid[location.x, location.y].append(encounter: encounter)
+
+        var nEncounters = 0
+        for x in 0 ..< length {
+            for y in 0 ..< length {
+                nEncounters += grid[x,y].encounters.count
+            }
+        }
+        XCTAssert(nEncounters == 1, "Spawn failed")
+    }
+
+    func testGridIncrement() {
+        let length = 10
+        var grid = World.Grid(width: length, height: length)
+        let encounter = WorldFactory.makeEncounter()
+        let location = grid.spawnLocation(at: encounter.direction.opposite())
+        grid[location.x, location.y].append(encounter: encounter)
+
+        grid = grid.increment()
+        var nEncounters = 0
+        var nextLocation: Location?
+        for x in 0 ..< length {
+            for y in 0 ..< length {
+                if !grid[x,y].encounters.isEmpty {
+                    nextLocation = Location(x: x, y: y)
+                    nEncounters += 1
+                }
+            }
+        }
+        XCTAssert(location != nextLocation, "Spawn failed")
+        XCTAssert(nEncounters == 1, "Increment failed")
+    }
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
     }
-    
+
 }

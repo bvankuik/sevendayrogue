@@ -9,8 +9,12 @@
 import Foundation
 
 
-struct Location {
-    var x: Int
-    var y: Int
+struct Location: Equatable {
+    let x: Int
+    let y: Int
+
+    static func ==(lhs: Location, rhs: Location) -> Bool {
+        return lhs.x == rhs.x && lhs.y == rhs.y
+    }
 }
 
