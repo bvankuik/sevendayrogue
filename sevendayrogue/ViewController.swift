@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     // MARK: - Private functions
 
     private func refresh() {
-        self.title = "Year \(Game.instance.world.epoch)"
+        self.refreshTitle()
         self.worldView.update(with: Game.instance.world)
 
         if self.paused {
@@ -30,6 +30,10 @@ class ViewController: UIViewController {
             self.playButton.title = "Pause"
             self.nextButton.isEnabled = false
         }
+    }
+
+    private func refreshTitle() {
+        self.title = "Round \(Game.instance.world.epoch)"
     }
 
     // MARK: - Actions
@@ -57,7 +61,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Year \(Game.instance.world.epoch)"
+        self.refreshTitle()
     }
 
     override func viewDidAppear(_ animated: Bool) {

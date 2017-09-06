@@ -15,7 +15,9 @@ extension WorldView {
             if square.encounters.isEmpty {
                 self.text = "·" // Unicode middle dot
             } else {
-                self.text = "👹"
+                if let first = square.encounters.first {
+                    self.text = first.emoji
+                }
             }
         }
 
