@@ -15,34 +15,32 @@ extension World {
         let width: Int
         var height: Int
 
-        func spawnLocation() -> Location {
-            let edge = Direction.random()
-
+        func spawnLocation(at edge: Direction) -> Location {
             let location: Location
             switch edge {
             case .north:
-                location = Location(row: 0, col: random(max: self.width))
+                location = Location(x: random(max: self.width), y: 0)
             case .east:
-                location = Location(row: random(max: self.height), col: self.width - 1)
+                location = Location(x: self.width - 1, y: random(max: self.height))
             case .south:
-                location = Location(row: self.height - 1, col: random(max: self.width))
+                location = Location(x: random(max: self.width), y: self.height - 1)
             case .west:
-                location = Location(row: random(max: self.height), col: 0)
+                location = Location(x: 0, y: random(max: self.height))
             }
 
             return location
         }
 
-        func square(for location: Location) -> Square {
-            return self.surface[location.row][location.col]
+        mutating func square(for location: Location) -> Square {
+            return self.surface[location.x][location.y]
         }
 
-        subscript(row: Int, col: Int) -> Square {
+        subscript(x: Int, y: Int) -> Square {
             get {
-                return self.surface[row][col]
+                return self.surface[x][y]
             }
             set {
-                self.surface[row][col] = newValue
+                self.surface[x][y] = newValue
             }
         }
 
@@ -73,22 +71,39 @@ extension World.Grid {
 
         var terrain: Terrain = .normal
         var encounters: [Encounter] = []
+
+        mutating func append(encounter: Encounter) {
+            self.encounters.append(encounter)
+        }
     }
 }
 
 struct World {
     var creatures: [Creature]
     let baseLocation: Location
-    let grid: Grid
+    var grid: Grid
 
     var epoch = 0
     var spawnChance = 50
+    let spawnDie = d100
+
+    // MARK: - Public function6s
+
+    mutating func increment() {
+        self.epoch += 1
+        if self.spawnDie.roll() <= self.spawnChance {
+            let encounter = WorldFactory.makeEncounter()
+            let location = self.grid.spawnLocation(at: encounter.direction.opposite())
+            dlog("Making encounter at location \(location)")
+            self.grid[location.x, location.y].append(encounter: encounter)
+        }
+    }
+
+    // MARK: - Life cycle
 
     init() {
-        let width = 40
-        let height = 30
-        self.grid = Grid(width: 30, height: 30)
-        self.baseLocation = Location(row: width/2, col: height/2)
+        self.grid = Grid(width: 40, height: 30)
+        self.baseLocation = Location(x: self.grid.width/2, y: self.grid.height/2)
         self.creatures = []
     }
 }

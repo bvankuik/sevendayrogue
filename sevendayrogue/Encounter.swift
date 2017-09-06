@@ -12,6 +12,7 @@ import Foundation
 struct Encounter {
     let direction: Direction
     let creatures: [Creature]
+    let origin = Direction.random()
 
     func nextLocation(from current: Location) -> Location {
         let newLocation: Location
@@ -21,13 +22,13 @@ struct Encounter {
 
         switch self.direction {
         case .north:
-            newLocation = Location(row: current.row - 1, col: current.col + deviation)
+            newLocation = Location(x: current.x - 1, y: current.y + deviation)
         case .east:
-            newLocation = Location(row: current.row + deviation, col: current.col + 1)
+            newLocation = Location(x: current.x + deviation, y: current.y + 1)
         case .south:
-            newLocation = Location(row: current.row + 1, col: current.col + deviation)
+            newLocation = Location(x: current.x + 1, y: current.y + deviation)
         case .west:
-            newLocation = Location(row: current.row + deviation, col: current.col - 1)
+            newLocation = Location(x: current.x + deviation, y: current.y - 1)
         }
 
         return newLocation

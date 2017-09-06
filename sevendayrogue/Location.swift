@@ -10,7 +10,7 @@ import Foundation
 
 
 struct Location {
-    var row: Int
-    var col: Int
+    var x: Int
+    var y: Int
 }
 

@@ -26,6 +26,16 @@
 		89C9E2F21F51BCE500A267C7 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C9E2F11F51BCE500A267C7 /* Location.swift */; };
 		89C9E2F41F52005600A267C7 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C9E2F31F52005600A267C7 /* Direction.swift */; };
 		89C9E2F61F5201DA00A267C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C9E2F51F5201DA00A267C7 /* Utils.swift */; };
+		89CD0BA41F5FED5A00FB6F7E /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CD0BA31F5FED5A00FB6F7E /* Game.swift */; };
+		89CD0BA91F5FEFC800FB6F7E /* WorldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CD0BA81F5FEFC800FB6F7E /* WorldView.swift */; };
+		89CD0BAB1F5FF16400FB6F7E /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CD0BAA1F5FF16400FB6F7E /* Const.swift */; };
+		89CD0BAC1F5FF16400FB6F7E /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CD0BAA1F5FF16400FB6F7E /* Const.swift */; };
+		89CD0BAF1F60035600FB6F7E /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CD0BAE1F60035600FB6F7E /* UIView+Extensions.swift */; };
+		89CD0BB01F60035600FB6F7E /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CD0BAE1F60035600FB6F7E /* UIView+Extensions.swift */; };
+		89CD0BB21F6034CD00FB6F7E /* monsters.csv in Resources */ = {isa = PBXBuildFile; fileRef = 89CD0BB11F6034CD00FB6F7E /* monsters.csv */; };
+		89CD0BB31F6034CD00FB6F7E /* monsters.csv in Resources */ = {isa = PBXBuildFile; fileRef = 89CD0BB11F6034CD00FB6F7E /* monsters.csv */; };
+		89CD0BB81F60394000FB6F7E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CD0BB71F60394000FB6F7E /* Logger.swift */; };
+		89CD0BB91F60394000FB6F7E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CD0BB71F60394000FB6F7E /* Logger.swift */; };
 		89DDD0831F4A0A3D00B26F03 /* Die.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DDD0821F4A0A3D00B26F03 /* Die.swift */; };
 		89DDD0861F4B45D200B26F03 /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DDD0851F4B45D200B26F03 /* Spell.swift */; };
 		89FCFF201F5A87F000D23E0D /* Ability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8926AEF01F4D82ED00828D81 /* Ability.swift */; };
@@ -82,6 +92,12 @@
 		89C9E2F11F51BCE500A267C7 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		89C9E2F31F52005600A267C7 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		89C9E2F51F5201DA00A267C7 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		89CD0BA31F5FED5A00FB6F7E /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		89CD0BA81F5FEFC800FB6F7E /* WorldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldView.swift; sourceTree = "<group>"; };
+		89CD0BAA1F5FF16400FB6F7E /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		89CD0BAE1F60035600FB6F7E /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		89CD0BB11F6034CD00FB6F7E /* monsters.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monsters.csv; path = gamedata/monsters.csv; sourceTree = SOURCE_ROOT; };
+		89CD0BB71F60394000FB6F7E /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		89DDD0821F4A0A3D00B26F03 /* Die.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Die.swift; sourceTree = "<group>"; };
 		89DDD0851F4B45D200B26F03 /* Spell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
 		89FCFF2C1F5A8AE400D23E0D /* WorldFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldFactory.swift; sourceTree = "<group>"; };
@@ -110,6 +126,7 @@
 		8926AEFA1F4D994500828D81 /* GameData */ = {
 			isa = PBXGroup;
 			children = (
+				89CD0BB11F6034CD00FB6F7E /* monsters.csv */,
 				8926AEF61F4D993E00828D81 /* names_human_female.txt */,
 				8926AEF71F4D993E00828D81 /* names_human_male.txt */,
 			);
@@ -138,15 +155,12 @@
 			isa = PBXGroup;
 			children = (
 				8926AEFA1F4D994500828D81 /* GameData */,
+				89C9E2F71F5201EE00A267C7 /* Utils */,
+				89CD0BAD1F60034300FB6F7E /* Extensions */,
 				89DDD0841F4A0A4500B26F03 /* Core */,
-				89C9E2F71F5201EE00A267C7 /* Support */,
-				8980ADA71F49D6B1005A83FE /* AppDelegate.swift */,
-				8980ADA91F49D6B1005A83FE /* ViewController.swift */,
-				8980ADAB1F49D6B1005A83FE /* Main.storyboard */,
-				8980ADB11F49D6B1005A83FE /* Assets.xcassets */,
-				8980ADB31F49D6B1005A83FE /* LaunchScreen.storyboard */,
-				8980ADB61F49D6B1005A83FE /* Info.plist */,
-				8980ADAE1F49D6B1005A83FE /* sevendayrogue.xcdatamodeld */,
+				89CD0BA51F5FEF5F00FB6F7E /* Views */,
+				89CD0BA71F5FEF9700FB6F7E /* View Controllers */,
+				89CD0BA61F5FEF8400FB6F7E /* Support */,
 			);
 			path = sevendayrogue;
 			sourceTree = "<group>";
@@ -160,14 +174,52 @@
 			path = sevendayrogueTests;
 			sourceTree = "<group>";
 		};
-		89C9E2F71F5201EE00A267C7 /* Support */ = {
+		89C9E2F71F5201EE00A267C7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				89C9E2F51F5201DA00A267C7 /* Utils.swift */,
 				89FCFF2F1F5A915200D23E0D /* LineReader.swift */,
 				89FCFF321F5C1C4E00D23E0D /* ArrayExtensions.swift */,
+				89CD0BB71F60394000FB6F7E /* Logger.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		89CD0BA51F5FEF5F00FB6F7E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				89CD0BA81F5FEFC800FB6F7E /* WorldView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		89CD0BA61F5FEF8400FB6F7E /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				8980ADB61F49D6B1005A83FE /* Info.plist */,
+				8980ADB31F49D6B1005A83FE /* LaunchScreen.storyboard */,
+				8980ADAB1F49D6B1005A83FE /* Main.storyboard */,
+				8980ADAE1F49D6B1005A83FE /* sevendayrogue.xcdatamodeld */,
+				8980ADA71F49D6B1005A83FE /* AppDelegate.swift */,
+				8980ADB11F49D6B1005A83FE /* Assets.xcassets */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		89CD0BA71F5FEF9700FB6F7E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8980ADA91F49D6B1005A83FE /* ViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		89CD0BAD1F60034300FB6F7E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				89CD0BAE1F60035600FB6F7E /* UIView+Extensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		89DDD0841F4A0A4500B26F03 /* Core */ = {
@@ -185,6 +237,8 @@
 				899CB9D51F4C7C840071F7E4 /* Weapon.swift */,
 				8926AEF21F4D8CE800828D81 /* World.swift */,
 				89FCFF2C1F5A8AE400D23E0D /* WorldFactory.swift */,
+				89CD0BA31F5FED5A00FB6F7E /* Game.swift */,
+				89CD0BAA1F5FF16400FB6F7E /* Const.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -275,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8980ADB51F49D6B1005A83FE /* LaunchScreen.storyboard in Resources */,
+				89CD0BB21F6034CD00FB6F7E /* monsters.csv in Resources */,
 				8926AEF81F4D993E00828D81 /* names_human_female.txt in Resources */,
 				8980ADB21F49D6B1005A83FE /* Assets.xcassets in Resources */,
 				8980ADAD1F49D6B1005A83FE /* Main.storyboard in Resources */,
@@ -286,6 +341,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89CD0BB31F6034CD00FB6F7E /* monsters.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,15 +361,20 @@
 				8926AEF51F4D978D00828D81 /* GameData.swift in Sources */,
 				89FCFF331F5C1C4E00D23E0D /* ArrayExtensions.swift in Sources */,
 				89C9E2F21F51BCE500A267C7 /* Location.swift in Sources */,
+				89CD0BB81F60394000FB6F7E /* Logger.swift in Sources */,
 				89FCFF301F5A915200D23E0D /* LineReader.swift in Sources */,
+				89CD0BAF1F60035600FB6F7E /* UIView+Extensions.swift in Sources */,
 				89C9E2F41F52005600A267C7 /* Direction.swift in Sources */,
 				8926AEF31F4D8CE800828D81 /* World.swift in Sources */,
 				899CB9D61F4C7C840071F7E4 /* Weapon.swift in Sources */,
 				899CB9D41F4C7C5C0071F7E4 /* Creature.swift in Sources */,
+				89CD0BA41F5FED5A00FB6F7E /* Game.swift in Sources */,
 				89DDD0831F4A0A3D00B26F03 /* Die.swift in Sources */,
 				89FCFF2D1F5A8AE400D23E0D /* WorldFactory.swift in Sources */,
+				89CD0BA91F5FEFC800FB6F7E /* WorldView.swift in Sources */,
 				8980ADB01F49D6B1005A83FE /* sevendayrogue.xcdatamodeld in Sources */,
 				899CB9D91F4C7E4F0071F7E4 /* Armor.swift in Sources */,
+				89CD0BAB1F5FF16400FB6F7E /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,17 +382,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89CD0BB91F60394000FB6F7E /* Logger.swift in Sources */,
 				89FCFF281F5A87F000D23E0D /* Spell.swift in Sources */,
 				89FCFF2E1F5A8AE400D23E0D /* WorldFactory.swift in Sources */,
 				89FCFF221F5A87F000D23E0D /* Creature.swift in Sources */,
 				89FCFF211F5A87F000D23E0D /* Armor.swift in Sources */,
 				89FCFF201F5A87F000D23E0D /* Ability.swift in Sources */,
 				89FCFF231F5A87F000D23E0D /* Die.swift in Sources */,
+				89CD0BAC1F5FF16400FB6F7E /* Const.swift in Sources */,
 				89FCFF2B1F5A87F300D23E0D /* Utils.swift in Sources */,
 				89FCFF271F5A87F000D23E0D /* Location.swift in Sources */,
 				89FCFF2A1F5A87F000D23E0D /* World.swift in Sources */,
 				89FCFF291F5A87F000D23E0D /* Weapon.swift in Sources */,
 				89FCFF311F5A915200D23E0D /* LineReader.swift in Sources */,
+				89CD0BB01F60035600FB6F7E /* UIView+Extensions.swift in Sources */,
 				89FCFF251F5A87F000D23E0D /* Encounter.swift in Sources */,
 				89FCFF261F5A87F000D23E0D /* GameData.swift in Sources */,
 				8980ADC01F49D6B1005A83FE /* sevendayrogueTests.swift in Sources */,

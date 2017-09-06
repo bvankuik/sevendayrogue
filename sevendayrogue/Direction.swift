@@ -18,4 +18,13 @@ enum Direction: UInt32 {
         let rand = arc4random_uniform(4)
         return Direction(rawValue: rand)!
     }
+
+    func opposite() -> Direction {
+        switch self {
+        case .north:    return .south
+        case .east:     return .west
+        case .south:    return .north
+        case .west:     return .east
+        }
+    }
 }

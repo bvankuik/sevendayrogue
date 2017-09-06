@@ -10,16 +10,31 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var worldView: WorldView!
+
+    private var timer: Timer?
+
+    // MARK: - Actions
+
+    func timerAction() {
+        self.title = "Year \(Game.instance.world.epoch)"
+        self.worldView.update(with: Game.instance.world)
+        Game.instance.world.increment()
+    }
+
+    // MARK: - View cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        self.worldView.backgroundColor = UIColor.white
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(_ animated: Bool) {
+        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self,
+                                          selector: #selector(self.timerAction), userInfo: nil,
+                                          repeats: true)
     }
-
 
 }
 

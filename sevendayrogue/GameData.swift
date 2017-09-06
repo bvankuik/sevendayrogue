@@ -13,7 +13,7 @@ import CoreGraphics
 class GameData {
 
     static func loadMonsters() -> [Creature] {
-        let monsterFileWithHeader = readFile(filename: "monsters.csv")
+        let monsterFileWithHeader = readFileFromBundle(forResource: "monsters", ofType: "csv")
         let monsterFile = monsterFileWithHeader[1 ..< monsterFileWithHeader.count]
 
         var monsters: [Creature] = []

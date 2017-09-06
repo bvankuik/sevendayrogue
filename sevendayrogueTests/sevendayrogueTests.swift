@@ -64,6 +64,11 @@ class sevendayrogueTests: XCTestCase {
         }
     }
 
+    func testMonsterLoading() {
+        let allMonsters = GameData.loadMonsters()
+        XCTAssert(allMonsters.count > 0, "No monsters in game data")
+    }
+
     func testWorld() {
         let world = World()
 
@@ -71,8 +76,8 @@ class sevendayrogueTests: XCTestCase {
         let height = world.grid.height
 
         (0..<100).forEach { _ in
-            let location = world.grid.spawnLocation()
-            XCTAssert(location.col == 0 || location.col == (width - 1) || location.row == 0 || location.row == (height - 1), "Spawn location is not at the edge")
+            let location = world.grid.spawnLocation(at: Direction.random())
+            XCTAssert(location.x == 0 || location.x == (width - 1) || location.y == 0 || location.y == (height - 1), "Spawn location is not at the edge")
         }
     }
 

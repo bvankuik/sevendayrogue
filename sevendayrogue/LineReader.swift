@@ -63,3 +63,20 @@ func readFile(filename: String) -> [String] {
     
     return lines
 }
+
+func readFileFromBundle(forResource resource: String, ofType type: String) -> [String] {
+    guard let path = Bundle.main.path(forResource: resource, ofType: type, inDirectory: nil, forLocalization: nil) else {
+        fatalError("Resource not found")
+    }
+
+    guard let reader = LineReader(path: path) else {
+        return []
+    }
+
+    var lines: [String] = []
+    for line in reader {
+        lines.append(line)
+    }
+
+    return lines
+}
