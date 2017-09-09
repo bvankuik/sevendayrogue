@@ -41,12 +41,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="u0T-B7-hU7">
                         <rightBarButtonItems>
-                            <barButtonItem title="Next" id="0fV-pd-aP6">
+                            <barButtonItem systemItem="fastForward" id="0fV-pd-aP6">
                                 <connections>
                                     <action selector="nextButtonAction:" destination="BYZ-38-t0r" id="JjO-UU-5TL"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Play" id="fIh-FO-2fk">
+                            <barButtonItem systemItem="pause" id="8bF-oI-tkK">
+                                <connections>
+                                    <action selector="pauseButtonAction:" destination="BYZ-38-t0r" id="cSc-qr-0cK"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="play" id="fIh-FO-2fk">
                                 <connections>
                                     <action selector="playButtonAction:" destination="BYZ-38-t0r" id="BLp-AO-LlF"/>
                                 </connections>
@@ -55,6 +60,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nextButton" destination="0fV-pd-aP6" id="3ij-Co-Ns0"/>
+                        <outlet property="pauseButton" destination="8bF-oI-tkK" id="MJ8-64-Pd8"/>
                         <outlet property="playButton" destination="fIh-FO-2fk" id="N0B-kc-3nm"/>
                         <outlet property="worldView" destination="6ha-VG-ova" id="tjU-0E-27u"/>
                     </connections>

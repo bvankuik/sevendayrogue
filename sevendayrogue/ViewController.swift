@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var worldView: WorldView!
     @IBOutlet weak var playButton: UIBarButtonItem!
+    @IBOutlet weak var pauseButton: UIBarButtonItem!
     @IBOutlet weak var nextButton: UIBarButtonItem!
 
     private var timer: Timer?
@@ -23,13 +24,10 @@ class ViewController: UIViewController {
         self.refreshTitle()
         self.worldView.update(with: Game.instance.world)
 
-        if self.paused {
-            self.playButton.title = "Play"
-            self.nextButton.isEnabled = true
-        } else {
-            self.playButton.title = "Pause"
-            self.nextButton.isEnabled = false
-        }
+        self.playButton.isEnabled = self.paused
+        self.pauseButton.isEnabled = !self.paused
+        self.nextButton.isEnabled = self.paused
+
     }
 
     private func refreshTitle() {
@@ -44,10 +42,15 @@ class ViewController: UIViewController {
     }
 
     @IBAction func playButtonAction(_ sender: Any) {
-        self.paused = !self.paused
+        self.paused = false
         self.refresh()
     }
 
+    @IBAction func pauseButtonAction(_ sender: Any) {
+        self.paused = true
+        self.refresh()
+    }
+    
     func timerAction() {
         guard !paused else {
             return
@@ -61,7 +64,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.refreshTitle()
+        self.refresh()
     }
 
     override func viewDidAppear(_ animated: Bool) {
