@@ -14,6 +14,7 @@ extension World {
         private var surface: Array<Array<Square>>
         let width: Int
         var height: Int
+        let baseLocation: Location
 
         // MARK: - Public functions
 
@@ -89,15 +90,18 @@ extension World {
         // MARK: - Life cycle
 
         init(width: Int, height: Int) {
+            self.baseLocation = Location(x: width/2, y: height/2)
             self.surface = []
             self.width = width
             self.height = height
 
-            for _ in 0 ..< width {
+            for x in 0 ..< width {
                 var squares: [Square] = []
 
-                for _ in 0 ..< height {
-                    squares.append(Square())
+                for y in 0 ..< height {
+                    let currentLocation = Location(x: x, y: y)
+                    let isBase = (currentLocation == baseLocation)
+                    squares.append(Square(encounters: [], isBase: isBase))
                 }
 
                 self.surface.append(squares)
@@ -108,13 +112,8 @@ extension World {
 
 extension World.Grid {
     struct Square {
-        enum Terrain {
-            case normal
-            case difficult
-        }
-
-        var terrain: Terrain = .normal
         var encounters: [Encounter] = []
+        var isBase: Bool
 
         mutating func append(encounter: Encounter) {
             self.encounters.append(encounter)
@@ -123,7 +122,6 @@ extension World.Grid {
 }
 
 class World {
-    private let baseLocation: Location
     private let spawnDie = d100
 
     private(set) var grid: Grid
@@ -162,6 +160,5 @@ class World {
 
     init() {
         self.grid = Grid(width: constants.worldGridWidth, height: constants.worldGridHeight)
-        self.baseLocation = Location(x: self.grid.width/2, y: self.grid.height/2)
     }
 }

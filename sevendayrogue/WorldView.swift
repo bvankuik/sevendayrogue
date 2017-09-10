@@ -19,13 +19,18 @@ extension WorldView {
                     self.text = first.emoji
                 }
             }
+            if square.isBase {
+                self.font = UIFont.systemFont(ofSize: constants.gridFontSize+20)
+                self.text = "⍟"
+            } else {
+                self.font = UIFont.systemFont(ofSize: constants.gridFontSize)
+            }
         }
 
         override init(frame: CGRect) {
             super.init(frame: frame)
             self.translatesAutoresizingMaskIntoConstraints = false
             self.textAlignment = .center
-            self.font = UIFont.systemFont(ofSize: constants.gridFontSize)
         }
         
         required init?(coder aDecoder: NSCoder) {
