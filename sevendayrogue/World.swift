@@ -33,6 +33,16 @@ extension World {
             return location
         }
 
+        func nEncounters() -> Int {
+            var nEncounters = 0
+            for x in 0 ..< self.width {
+                for y in 0 ..< self.height {
+                    nEncounters += self[x,y].encounters.count
+                }
+            }
+            return nEncounters
+        }
+
         func square(for location: Location) -> Square {
             return self.surface[location.x][location.y]
         }
@@ -115,7 +125,6 @@ extension World.Grid {
 class World {
     private let baseLocation: Location
     private let spawnDie = d100
-    private var spawnChance = 50
 
     private(set) var grid: Grid
     private(set) var epoch = 0
@@ -125,12 +134,28 @@ class World {
     func increment() {
         self.epoch += 1
         self.grid = self.grid.increment()
-        if self.spawnDie.roll() <= self.spawnChance {
+        let spawnChance = self.spawnChance()
+        if self.spawnDie.roll() <= spawnChance {
             let encounter = WorldFactory.makeEncounter()
             let location = self.grid.spawnLocation(at: encounter.direction.opposite())
             dlog("Making encounter at location \(location)")
             self.grid[location.x, location.y].append(encounter: encounter)
         }
+    }
+
+    // MARK: - Private functions
+
+    private func spawnChance() -> Int {
+        let nEncounters = self.grid.nEncounters()
+        let maxEncounters = 10
+        let spawnChance: Int
+        if nEncounters == 0 {
+            spawnChance = 100
+        } else {
+            spawnChance = (((maxEncounters+1) - nEncounters) / nEncounters) * maxEncounters
+        }
+        dlog(String(format: "nEncounters = %d, spawnChance = %d", nEncounters, maxEncounters))
+        return spawnChance
     }
 
     // MARK: - Life cycle
