@@ -21,7 +21,7 @@ extension WorldView {
             }
             if square.isBase {
                 self.font = UIFont.systemFont(ofSize: constants.gridFontSize+20)
-                self.text = "⍟"
+                self.text = "⍟"  //☆✪ 🏰🏯🏠
             } else {
                 self.font = UIFont.systemFont(ofSize: constants.gridFontSize)
             }

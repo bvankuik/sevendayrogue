@@ -23,20 +23,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ha-VG-ova" customClass="WorldView" customModule="sevendayrogue" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="193" width="375" height="281"/>
-                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="6ha-VG-ova" secondAttribute="height" multiplier="4:3" id="m9B-fd-tTA"/>
-                                </constraints>
-                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2B7-dM-OaQ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ha-VG-ova" customClass="WorldView" customModule="sevendayrogue" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
+                                        <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="6ha-VG-ova" secondAttribute="height" multiplier="4:3" id="m9B-fd-tTA"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RKw-AZ-eO7">
+                                        <rect key="frame" x="33.5" y="281" width="308" height="322"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6ha-VG-ova" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ERB-gq-9Bm"/>
-                            <constraint firstAttribute="trailing" secondItem="6ha-VG-ova" secondAttribute="trailing" id="NVf-hx-8dp"/>
-                            <constraint firstItem="6ha-VG-ova" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dM8-bg-qaQ"/>
-                            <constraint firstItem="6ha-VG-ova" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wAI-D7-Of6"/>
+                            <constraint firstItem="2B7-dM-OaQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="22d-bq-vMt"/>
+                            <constraint firstAttribute="trailing" secondItem="2B7-dM-OaQ" secondAttribute="trailing" id="2jn-1i-DDB"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2B7-dM-OaQ" secondAttribute="bottom" id="hAA-j1-los"/>
+                            <constraint firstItem="2B7-dM-OaQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zju-iY-tqm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="u0T-B7-hU7">

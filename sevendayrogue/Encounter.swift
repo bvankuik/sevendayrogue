@@ -13,7 +13,10 @@ struct Encounter {
     let direction: Direction
     let creatures: [Creature]
     let origin = Direction.random()
-    let emoji = ["👹", "😈", "👽", "👻", "💀", "👾", "🤢", "🎃", "😺", "💂‍♀️", "🕵️‍♀️"].randomItem()!
+    let emoji = ["👹", "😈", "👽", "⚔️", "🤺", "👻", "💀", "👾", "🤢", "🎃",
+        "😺", "💂‍♀️", "🕵️‍♀️", "👸🏻", "👸🏼", "👸🏽", "🤴🏻", "🤴🏽", "🤴🏾", "🐷", "👨🏻‍✈️", "👨🏽‍✈️"]
+        .randomItem()!
+    // Some farmers 👨🏻‍🌾👩🏽‍🌾👨🏿‍🌾👩🏾‍🌾
 
     func nextLocation(from current: Location) -> Location {
         let randomOffset = arc4random_uniform(3)
