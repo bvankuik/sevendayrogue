@@ -43,6 +43,27 @@ struct Encounter {
         return newLocation
     }
 
+    func nextLocation(from current: Location, to destination: Location) -> Location {
+        // Test to see if next step would immediately go to destination
+
+        guard !current.adjacent(to: destination) else {
+            return destination
+        }
+
+        // Loop and find midpoint until both are 1 or less
+        var midX: Int = destination.x - current.x
+        var midY: Int = destination.y - current.y
+        var midpoint: Location
+
+        repeat {
+            midX = Int(round(Double(midX) / 2.0))
+            midY = Int(round(Double(midY) / 2.0))
+            midpoint = Location(x: current.x + midX, y: current.y + midY)
+        } while !midpoint.adjacent(to: current)
+
+        return midpoint
+    }
+
     init(creatures: [Creature]) {
         self.direction = Direction.random()
         self.creatures = creatures

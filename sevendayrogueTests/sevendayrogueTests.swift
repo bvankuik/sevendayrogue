@@ -77,7 +77,8 @@ class sevendayrogueTests: XCTestCase {
 
         (0..<100).forEach { _ in
             let location = world.grid.spawnLocation(at: Direction.random())
-            XCTAssert(location.x == 0 || location.x == (width - 1) || location.y == 0 || location.y == (height - 1), "Spawn location is not at the edge")
+            XCTAssert(location.x == 0 || location.x == (width - 1) || location.y == 0 || location.y == (height - 1),
+                      "Spawn location is not at the edge")
         }
     }
 
@@ -104,6 +105,43 @@ class sevendayrogueTests: XCTestCase {
             }
         }
         XCTAssert(nEncounters == 1, "Spawn failed")
+    }
+
+    func testNextLocation() {
+        var current: Location
+        var destination: Location
+        var nextStep: Location
+        let encounter = Encounter(creatures: [])
+
+        current = Location(x: 0, y: 0)
+        destination = Location(x: 1, y: 1)
+        nextStep = encounter.nextLocation(from: current, to: destination)
+        XCTAssert(nextStep == destination)
+
+        destination = Location(x: -1, y: -1)
+        nextStep = Encounter(creatures: []).nextLocation(from: current, to: destination)
+        XCTAssert(nextStep == destination)
+
+        current = Location(x: 0, y: 0)
+        destination = Location(x: 2, y: 2)
+        nextStep = encounter.nextLocation(from: current, to: destination)
+        XCTAssert(nextStep == Location(x: 1, y: 1))
+
+        current = Location(x: 2, y: 2)
+        destination = Location(x: 8, y: 2)
+        nextStep = encounter.nextLocation(from: current, to: destination)
+        XCTAssert(nextStep == Location(x: 3, y: 2))
+
+        current = Location(x: 2, y: 2)
+        destination = Location(x: 0, y: 2)
+        nextStep = encounter.nextLocation(from: current, to: destination)
+        XCTAssert(nextStep == Location(x: 1, y: 2))
+
+        current = Location(x: 0, y: 0)
+        destination = Location(x: -2, y: -5)
+        nextStep = encounter.nextLocation(from: current, to: destination)
+        XCTAssert(nextStep == Location(x: -1, y: -1))
+
     }
 
     func testGridIncrement() {
