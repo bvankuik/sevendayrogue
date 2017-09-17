@@ -20,7 +20,7 @@ extension WorldView {
                 }
             }
             if square.isBase {
-                self.font = UIFont.systemFont(ofSize: constants.gridFontSize+20)
+                self.font = UIFont.systemFont(ofSize: constants.baseFontSize)
                 self.text = "⍟"  //☆✪ 🏰🏯🏠
             } else {
                 self.font = UIFont.systemFont(ofSize: constants.gridFontSize)
@@ -31,6 +31,8 @@ extension WorldView {
             super.init(frame: frame)
             self.translatesAutoresizingMaskIntoConstraints = false
             self.textAlignment = .center
+            self.lineBreakMode = .byTruncatingTail
+            self.adjustsFontSizeToFitWidth = true
         }
         
         required init?(coder aDecoder: NSCoder) {
