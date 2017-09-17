@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var pauseButton: UIBarButtonItem!
     @IBOutlet weak var nextButton: UIBarButtonItem!
 
-    private var timer: Timer?
+    private let timer = DispatchSource.makeTimerSource()
     private var paused = true
 
     // MARK: - Private functions
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         self.refresh()
     }
     
-    func timerAction() {
+    @objc func timerAction() {
         guard !paused else {
             return
         }
@@ -68,9 +68,14 @@ class ViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self,
-                                          selector: #selector(self.timerAction), userInfo: nil,
-                                          repeats: true)
+        super.viewDidAppear(animated)
+        timer.schedule(deadline: .now(), repeating: 1.0)
+        timer.setEventHandler {
+            DispatchQueue.main.sync {
+                self.timerAction()
+            }
+        }
+        timer.activate()
     }
 
 }
