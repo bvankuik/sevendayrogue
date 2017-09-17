@@ -141,8 +141,27 @@ class sevendayrogueTests: XCTestCase {
         destination = Location(x: -2, y: -5)
         nextStep = encounter.nextLocation(from: current, to: destination)
         XCTAssert(nextStep == Location(x: -1, y: -1))
-
     }
+
+    func testArea() {
+        let area002 = Area(origin: Location(x: 0, y: 0), radius: 2)
+        XCTAssert(area002.contains(location: Location(x: 1, y: 1)))
+        XCTAssert(area002.contains(location: Location(x: 1, y: 2)))
+        XCTAssert(area002.contains(location: Location(x: 2, y: 2)))
+        XCTAssert(area002.contains(location: Location(x: -2, y: -2)))
+        XCTAssert(!area002.contains(location: Location(x: -3, y: 0)))
+        XCTAssert(!area002.contains(location: Location(x: -3, y: 3)))
+        XCTAssert(!area002.contains(location: Location(x: 3, y: 2)))
+
+        let area224 = Area(origin: Location(x: 2, y: 2), radius: 4)
+        XCTAssert(area224.contains(location: Location(x: 2, y: 2)))
+        XCTAssert(area224.contains(location: Location(x: 3, y: 3)))
+        XCTAssert(area224.contains(location: Location(x: 6, y: 0)))
+        XCTAssert(area224.contains(location: Location(x: -2, y: -2)))
+        XCTAssert(area224.contains(location: Location(x: -2, y: 0)))
+        XCTAssert(!area224.contains(location: Location(x: -4, y: 0)))
+        XCTAssert(!area224.contains(location: Location(x: 7, y: 4)))
+}
 
     func testGridIncrement() {
         let length = 10
