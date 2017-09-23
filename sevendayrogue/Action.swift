@@ -9,15 +9,24 @@
 import Foundation
 
 
-protocol Action {
+protocol Actionable {
+    var name: String {get}
     var remainingRounds: Int {get}
     mutating func increment()
 }
 
+enum Actions {
+    case HailAction()
 
-struct HailAction: Action {
+    static let allValues = [
+        Actions.HailAction()
+    ]
+}
+
+struct HailAction: Actionable {
     var remainingRounds = 3
     let radius = 3
+    var name = "Hail"
 
     mutating func increment() {
         self.remainingRounds -= 1

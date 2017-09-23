@@ -18,6 +18,23 @@ extension World {
 
         // MARK: - Public functions
 
+        func encounters(in area: Area) -> [Encounter] {
+            var allEncounters: [Encounter] = []
+
+            for x in 0 ..< self.width {
+                for y in 0 ..< self.height {
+                    let encounters = self[x,y].encounters
+                    if !encounters.isEmpty {
+                        let location = Location(x: x, y: y)
+                        if area.contains(location: location) {
+                            allEncounters.append(contentsOf: encounters)
+                        }
+                    }
+                }
+            }
+            return allEncounters
+        }
+
         func spawnLocation(at edge: Direction) -> Location {
             let location: Location
             switch edge {
@@ -126,19 +143,36 @@ class World {
 
     private(set) var grid: Grid
     private(set) var epoch = 0
+    private var actions: [Actionable] = []
+
+    var isSpawning = true
 
     // MARK: - Public functions
 
+    func append(newAction: Actionable) {
+        self.actions.append(newAction)
+    }
+
     func increment() {
         self.epoch += 1
-        self.grid = self.grid.increment()
         let spawnChance = self.spawnChance()
-        if self.spawnDie.roll() <= spawnChance {
+        if self.isSpawning && self.spawnDie.roll() <= spawnChance {
             let encounter = WorldFactory.makeEncounter()
             let location = self.grid.spawnLocation(at: encounter.direction.opposite())
             dlog("Making encounter at location \(location)")
             self.grid[location.x, location.y].append(encounter: encounter)
         }
+
+        for var action in self.actions {
+            if let hailAction = action as? HailAction {
+                dlog("Hailing")
+                let hailArea = Area(origin: self.grid.baseLocation, radius: hailAction.radius)
+//                self.grid.encounters(in: hailArea)[0].tempDestination = self.grid.baseLocation
+            }
+            action.increment()
+        }
+        self.actions = self.actions.filter { $0.remainingRounds > 0 }
+        self.grid = self.grid.increment()
     }
 
     // MARK: - Private functions
@@ -160,5 +194,9 @@ class World {
 
     init() {
         self.grid = Grid(width: constants.worldGridWidth, height: constants.worldGridHeight)
+    }
+
+    init(with grid: Grid) {
+        self.grid = grid
     }
 }

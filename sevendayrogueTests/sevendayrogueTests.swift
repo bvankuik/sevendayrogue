@@ -111,35 +111,41 @@ class sevendayrogueTests: XCTestCase {
         var current: Location
         var destination: Location
         var nextStep: Location
-        let encounter = Encounter(creatures: [])
+        var encounter = Encounter(creatures: [])
 
         current = Location(x: 0, y: 0)
         destination = Location(x: 1, y: 1)
-        nextStep = encounter.nextLocation(from: current, to: destination)
+        encounter.tempDestination = destination
+        nextStep = encounter.nextLocation(from: current)
         XCTAssert(nextStep == destination)
 
         destination = Location(x: -1, y: -1)
-        nextStep = Encounter(creatures: []).nextLocation(from: current, to: destination)
+        encounter.tempDestination = destination
+        nextStep = encounter.nextLocation(from: current)
         XCTAssert(nextStep == destination)
 
         current = Location(x: 0, y: 0)
         destination = Location(x: 2, y: 2)
-        nextStep = encounter.nextLocation(from: current, to: destination)
+        encounter.tempDestination = destination
+        nextStep = encounter.nextLocation(from: current)
         XCTAssert(nextStep == Location(x: 1, y: 1))
 
         current = Location(x: 2, y: 2)
         destination = Location(x: 8, y: 2)
-        nextStep = encounter.nextLocation(from: current, to: destination)
+        encounter.tempDestination = destination
+        nextStep = encounter.nextLocation(from: current)
         XCTAssert(nextStep == Location(x: 3, y: 2))
 
         current = Location(x: 2, y: 2)
         destination = Location(x: 0, y: 2)
-        nextStep = encounter.nextLocation(from: current, to: destination)
+        encounter.tempDestination = destination
+        nextStep = encounter.nextLocation(from: current)
         XCTAssert(nextStep == Location(x: 1, y: 2))
 
         current = Location(x: 0, y: 0)
         destination = Location(x: -2, y: -5)
-        nextStep = encounter.nextLocation(from: current, to: destination)
+        encounter.tempDestination = destination
+        nextStep = encounter.nextLocation(from: current)
         XCTAssert(nextStep == Location(x: -1, y: -1))
     }
 
@@ -161,7 +167,7 @@ class sevendayrogueTests: XCTestCase {
         XCTAssert(area224.contains(location: Location(x: -2, y: 0)))
         XCTAssert(!area224.contains(location: Location(x: -4, y: 0)))
         XCTAssert(!area224.contains(location: Location(x: 7, y: 4)))
-}
+    }
 
     func testGridIncrement() {
         let length = 10
@@ -183,6 +189,27 @@ class sevendayrogueTests: XCTestCase {
         }
         XCTAssert(location != nextLocation, "Spawn failed")
         XCTAssert(nEncounters == 1, "Increment failed")
+    }
+
+    func testActions() {
+        let length = 7
+        var grid = World.Grid(width: length, height: length)
+
+        let encounter = WorldFactory.makeEncounter()
+        let location = grid.spawnLocation(at: encounter.direction)
+        grid[location.x, location.y].append(encounter: encounter)
+
+        let world = World(with: grid)
+        world.isSpawning = false
+        let nIncrements = grid.height / 2
+        let hailAction = HailAction(remainingRounds: nIncrements, name: "Hail")
+        world.append(newAction: hailAction)
+
+        for _ in 0 ..< nIncrements {
+            world.increment()
+        }
+        let baseEncounter = world.grid.square(for: world.grid.baseLocation).encounters.first
+        XCTAssert(baseEncounter != nil, "After hail action, did not find encounter at base")
     }
 
     func testPerformanceExample() {

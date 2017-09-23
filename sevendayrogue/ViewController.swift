@@ -8,15 +8,50 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var worldView: WorldView!
     @IBOutlet weak var playButton: UIBarButtonItem!
     @IBOutlet weak var pauseButton: UIBarButtonItem!
     @IBOutlet weak var nextButton: UIBarButtonItem!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var tableView: UITableView!
 
     private let timer = DispatchSource.makeTimerSource()
     private var paused = true
+
+    // MARK: - UITableViewDataSource
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = Actions.allValues.count
+        return count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ActionCell", for: indexPath)
+
+        let action = Actions.allValues[indexPath.row]
+        if let actionable = action as? Actionable {
+            cell.textLabel?.text = actionable.name
+        }
+        return cell
+    }
+
+    // MARK: - UITableViewDelegate
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let selectedAction = Actions.allValues[indexPath.row]
+        switch selectedAction {
+        case .HailAction():
+            Game.instance.world.append(newAction: HailAction())
+        }
+    }
 
     // MARK: - Private functions
 
@@ -27,7 +62,6 @@ class ViewController: UIViewController {
         self.playButton.isEnabled = self.paused
         self.pauseButton.isEnabled = !self.paused
         self.nextButton.isEnabled = self.paused
-
     }
 
     private func refreshTitle() {
@@ -51,13 +85,34 @@ class ViewController: UIViewController {
         self.refresh()
     }
     
-    @objc func timerAction() {
+    func timerAction() {
         guard !paused else {
             return
         }
 
         Game.instance.world.increment()
         self.refresh()
+    }
+
+    // MARK: - Layout
+
+    override func viewWillLayoutSubviews() {
+        let size = self.view.frame.size
+        if size.width > size.height {
+            self.stackView.axis = .horizontal
+        } else {
+            self.stackView.axis = .vertical
+        }
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { _ in
+            if size.width > size.height {
+                self.stackView.axis = .horizontal
+            } else {
+                self.stackView.axis = .vertical
+            }
+        }, completion: nil)
     }
 
     // MARK: - View cycle

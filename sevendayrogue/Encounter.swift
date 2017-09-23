@@ -15,10 +15,18 @@ struct Encounter {
     let origin = Direction.random()
     let emoji = ["👹", "😈", "👽", "⚔️", "🤺", "👻", "💀", "👾", "🤢", "🎃",
         "😺", "💂‍♀️", "🕵️‍♀️", "👸🏻", "👸🏼", "👸🏽", "🤴🏻", "🤴🏽", "🤴🏾", "🐷", "👨🏻‍✈️", "👨🏽‍✈️"]
-        .randomItem()!
-    // Some farmers 👨🏻‍🌾👩🏽‍🌾👨🏿‍🌾👩🏾‍🌾
+        .randomItem()! // Some farmers 👨🏻‍🌾👩🏽‍🌾👨🏿‍🌾👩🏾‍🌾
+    var tempDestination: Location?
 
     func nextLocation(from current: Location) -> Location {
+        if let destination = self.tempDestination {
+            return self.calculateNextLocation(from: current, to: destination)
+        } else {
+            return self.calculateNextLocation(from: current)
+        }
+    }
+
+    private func calculateNextLocation(from current: Location) -> Location {
         let randomOffset = arc4random_uniform(3)
         let deviation: Int = -1 + Int(randomOffset)
         let nextX: Int
@@ -43,7 +51,7 @@ struct Encounter {
         return newLocation
     }
 
-    func nextLocation(from current: Location, to destination: Location) -> Location {
+    private func calculateNextLocation(from current: Location, to destination: Location) -> Location {
         // Test to see if next step would immediately go to destination
 
         guard !current.adjacent(to: destination) else {
